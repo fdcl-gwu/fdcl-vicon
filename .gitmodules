@@ -1,0 +1,6 @@
+[submodule "libraries/eigen"]
+	path = libraries/eigen
+	url = git@github.com:fdcl-gwu/eigen.git
+[submodule "libraries/vrpn"]
+	path = libraries/vrpn
+	url = git@github.com:fdcl-gwu/vrpn.git
