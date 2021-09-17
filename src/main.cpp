@@ -10,7 +10,7 @@
 #define NUM_THREADS 4
 pthread_mutex_t obs_mutex;
 
-fdcl_vicon VICON;
+fdcl::vicon VICON;
 
 bool SYS_ON = true;
 struct timespec tspec_init, tspec_curr;

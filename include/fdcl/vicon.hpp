@@ -5,8 +5,7 @@
 #include <iostream>
 #include <vrpn_Tracker.h>
 
-#include "fdcl_observer.hpp"
-#include "misc_matrix_func.hpp"
+#include "fdcl/matrix_utils.hpp"
 
 
 /** \brief Get data from the VICON system (not documented)
@@ -14,11 +13,14 @@
  * Start a connection between the computer and the VICON server to get the
  * measurements from the server.
  */
-class fdcl_vicon
+namespace fdcl
+{
+    
+class vicon
 {
 public:
-    fdcl_vicon();
-    ~fdcl_vicon();
+    vicon();
+    ~vicon();
 
     std::string object = "body@192.168.10.1";
     static void callback(void* userdata, const vrpn_TRACKERCB tdata);
@@ -34,5 +36,7 @@ private:
     vrpn_Tracker_Remote *tracker;
 
 };
+
+}  // end of namespace fdcl
 
 #endif

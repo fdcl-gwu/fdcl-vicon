@@ -1,13 +1,13 @@
 #include "fdcl/vicon.hpp"
 
 
-fdcl_vicon::fdcl_vicon()
+fdcl::vicon::vicon()
 {
     ;
 }
 
 
-fdcl_vicon::~fdcl_vicon()
+fdcl::vicon::~vicon()
 {
     if (on)
     {
@@ -16,35 +16,37 @@ fdcl_vicon::~fdcl_vicon()
 }
 
 
-void fdcl_vicon::close()
+void fdcl::vicon::close()
 {
     delete tracker;
     on = false;
+
+    std::cout << "VICON: object closed" << std::endl;
 }
 
 
-void fdcl_vicon::open(std::string object)
+void fdcl::vicon::open(std::string object)
 {
     tracker = new vrpn_Tracker_Remote(object.c_str());
-    tracker -> register_change_handler(NULL, fdcl_vicon::callback);
+    tracker -> register_change_handler(NULL, fdcl::vicon::callback);
 
     std::cout << "VICON: object opened" << std::endl;
 }
 
 
-void fdcl_vicon::open()
+void fdcl::vicon::open()
 {
     open(object);
 }
 
 
-void fdcl_vicon::loop()
+void fdcl::vicon::loop()
 {
     tracker->mainloop();
 }
 
 
-void fdcl_vicon::callback(void* userdata, const vrpn_TRACKERCB tdata)
+void fdcl::vicon::callback(void* userdata, const vrpn_TRACKERCB tdata)
 {
     Vector3 x_v;
     Matrix3 R_vm;
@@ -69,5 +71,7 @@ void fdcl_vicon::callback(void* userdata, const vrpn_TRACKERCB tdata)
 
     // You can either just print your data, or add your own callback here.
     // Make sure that the callback is static. 
-    // OBS.callback_zed(R_vm, x_v);
+    // State.callback_zed(R_vm, x_v);
+    std::cout << "\nx_v: " << x_v.transpose() << std::endl;
+    std::cout << "R_vm: " << R_vm << std::endl;
 }

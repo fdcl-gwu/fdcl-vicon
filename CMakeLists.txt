@@ -22,9 +22,10 @@ add_executable(test_fdcl_vicon
     src/main.cpp
 )
 target_compile_options(test_fdcl_vicon
-    PRIVATE -lvrpn -lquat -pthread -O3 -std=c++11
+    PRIVATE -lvrpn -lquat -lrt -pthread -O3 -std=c++11
     )
 target_link_libraries(test_fdcl_vicon
-    detect_markers
+    fdcl_vicon
+    pthread
     vrpn
     )
