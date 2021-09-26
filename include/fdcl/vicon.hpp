@@ -25,7 +25,7 @@ public:
     std::string object = "body@192.168.10.1";
     static void callback(void* userdata, const vrpn_TRACKERCB tdata);
 
-    bool on = 0;
+    bool on = false;
 
     void open();
     void open(std::string object);

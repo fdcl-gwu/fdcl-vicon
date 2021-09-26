@@ -3,7 +3,7 @@
 
 fdcl::vicon::vicon()
 {
-    ;
+    on = true;
 }
 
 
