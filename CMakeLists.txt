@@ -3,6 +3,13 @@ project(FDCL-VICON)
 
 set (CMAKE_CXX_STANDARD 11)
 
+if(COMMAND cmake_policy)
+    cmake_policy(SET CMP0003 NEW)
+endif(COMMAND cmake_policy)
+
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
 include_directories("/usr/local/include/")
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/libraries/eigen)
@@ -26,6 +33,6 @@ target_compile_options(test_fdcl_vicon
     )
 target_link_libraries(test_fdcl_vicon
     fdcl_vicon
-    pthread
+    Threads::Threads
     vrpn
     )
